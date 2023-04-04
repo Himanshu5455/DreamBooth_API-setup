@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Response</title>
+      <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
+      <link href="https://stablediffusionapi.com/themes/tailwind/css/app.css" rel="stylesheet">
+      <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    <!--Navbar-->
+    <div class="container mx-auto">
+      {% include 'nav.html'%} {% block content %} {% endblock %}
+    </div>
+    <!--End of Navbar-->
+    <center>
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Well done!</h4>
+      <br>
+      <br>
+      <p>
+        Aww yeah, Dreambooth is Processing your dream images ! It can take from
+        2 minutes to 5 minutes. To get the fine tune images please note the
+        request id:
+        <b>{{id}} </b>
+      </p> and click below button to get image after some time
+      <hr>
+      <br>
+      
+
+      <!-- <div class="flex justify-center items-center">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <a href="/fetch_images">click here</a>
+        </button>       
+      </div> -->
+
+
+      <form method="POST" action="{{ url_for('parseId') }}">
+        <input type="text" name="my_input" value="{{id}}" hidden>
+        <div class="flex justify-center items-center">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+           click here
+          </button>
+      </form>
+
+
+      
+    </div>
+  </center>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  </body>
+</html>

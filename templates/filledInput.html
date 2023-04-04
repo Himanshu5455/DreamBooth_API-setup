@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Id</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
+    />
+    <link
+      href="https://stablediffusionapi.com/themes/tailwind/css/app.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!--NavBar-->
+    <nav>
+      <div
+        class="md:block border-xl border-grey-100 border-2 border-solid rounded-2xl p-2"
+      >
+        <ul
+          id="menu"
+          class="mt-10 flex md:mt-0 text-sm font-medium text-center text-gray-500 rounded-lg divide-x divide-gray-200 shadow"
+        >
+          <li class="w-full">
+            <a
+              href="/"
+              class="inline-block p-4 w-full bg-white rounded-l-lg hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 active focus:outline-none"
+              >Stable Diffusion</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/TrainModel"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Train Model</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/getTrainingStatus"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Training Status</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/getFineTunedImages"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Generate Image</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/fetch_images"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Trained Images</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/history"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >History</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!---->
+    <form action="/fetch_images" method="post">
+      <div class="main-div">
+        <div class="mt-10">
+          <h3 class="p-3 text-2xl text-center">Fetch Images From Request Id</h3>
+          <div class="sm:text-center w-full">
+            <div
+              class="p-5 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+            >
+              <input
+                placeholder="Enter Request ID:"
+                id="fname"
+                name="fid"
+                type="number"
+                value="{{data}}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div class="flex justify-center items-center">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+
+   
+  </body>
+</html>

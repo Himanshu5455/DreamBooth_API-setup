@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upscale Image</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com/3.2.4"></script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
+    />
+    <link
+      href="https://stablediffusionapi.com/themes/tailwind/css/app.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+
+    {% include 'nav.html' %}
+    <div class="main-div">
+      <center>
+        <div class="container mx-auto mb-6 p-5">
+          <div class="inline-block">
+            <div class="basis-3/4">
+              <img src="{{context}}" alt="Second Image" class="w-400" />      
+            </div>      
+          </div>      
+        </div>
+      </center>   
+        <div class="flex justify-center items-center">
+          <div class="inline-block">
+            <select name="scale" required id="scale" id="scale"
+                class="w-40 rounded-xl border-gray-300 focus:border-blue-100 p-3">
+                <option value="2x">Scale By</option>
+                <option value="2x">2x</option>
+                <option value="4x">4x</option>
+                <option value="8x">8x</option>          
+            </select>
+          </div>
+          <button
+            type="button"
+            id="submitButton"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Upscale
+          </button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+   <script>
+      function sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+      }
+      jQuery(document).ready(function ($) {
+        console.log("Upscale Image Ajax code");
+        jQuery("#submitButton").click(function () {
+          console.log("clicked the upscale button");
+        
+          scalebytest = jQuery("#scale");  
+          scaleby = jQuery("#scale").val();  
+          console.log("scale it by")
+          console.log(scaleby)       
+          $.ajax({
+            type: "POST",
+            url: "{{url_for('deepAIupscale')}}",
+            data: {'new_freq':scaleby},
+
+
+            beforeSend: function (res, status) {
+              jQuery(".main-div").html(`<button class="buttonload">
+                     <i class="fa fa-refresh fa-spin"></i>Loading
+                   </button>`);
+            },
+
+
+            success: function (res) {
+              console.log(res);
+              jQuery(".main-div").html(`<button class="buttonload">
+                     <i class="fa fa-refresh fa-spin"></i>Loading
+                   </button>`);
+              console.log("before sleeping");
+              console.log("after sleeping");             
+              window.location = "{{url_for('downloadUpscaledImage')}}";
+            },
+
+            error: function (res) {
+              console.log(res);
+              console.log("error has been occured");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
+    />
+    <link
+      href="https://stablediffusionapi.com/themes/tailwind/css/app.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Message</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+      integrity="sha512-yS7+iAGZ2QW1+Vx/U/S+2cUzjKk5q5vJ9XuM+ILZj7VWweh6gRJ6j4fEN1Dl+ro94a72GpLXbSWej+Z7nJn2pw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    {%include 'nav.html'%}
+    <div class="container border-purple-500">
+      <div class="row justify-content-center">
+        <div class="col-md-8 mt-5">
+          <div class="card bg-gray-100">
+            <div class="card-header">
+              <h2 style="margin-left: 40px;">Well done!</h2>
+              <br />
+            </div>
+            {% if post_response.status == 'error' %}
+            <p>{{post_response.message}}!</p>
+            {% endif %}
+            <p>Aww yeah, {{post_response.messege}} to train your model ! {{post_response.data}}. Model Training id is : {{post_response.training_id}}
+                <b> click below link to get current status of your model</b></p>
+            <hr>
+            <p class="mb-0"><a href="/getTrainingStatus">click here</a> to know training status</p>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  </body>
+</html>

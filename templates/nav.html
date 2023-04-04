@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
+    />
+    <link
+      href="https://stablediffusionapi.com/themes/tailwind/css/app.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div
+        class="md:block border-xl border-grey-100 border-2 border-solid rounded-2xl p-2"
+      >
+        <ul
+          id="menu"
+          class="mt-10 flex md:mt-0 text-sm font-medium text-center text-gray-500 rounded-lg divide-x divide-gray-200 shadow"
+        >
+          <li class="w-full">
+            <a
+              href="/"
+              class="inline-block p-4 w-full bg-white rounded-l-lg hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 active focus:outline-none"
+              >Stable Diffusion</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/TrainModel"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Train Model</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/getTrainingStatus"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Training Status</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/getFineTunedImages"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Generate Image</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/fetch_images"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >Trained Images</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/history"
+              class="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              >History</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="static/js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
+    <link href="https://stablediffusionapi.com/themes/tailwind/css/app.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <!--Navbar-->
+    <div class="container mx-auto">
+    {% include 'nav.html'%}
+  </div>
+  <!--End of Navbar-->
+    <br>
+    <br>
+
+    <div class="flex justify-center items-center">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit"> 
+        <a href="{{url_for('static', filename='/download/image.jpg')}}" download>
+          Download Image >></a
+        >
+      </button>
+    </div>
+  </body>
+</html>

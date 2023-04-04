@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate</title>
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
+  <link href="https://stablediffusionapi.com/themes/tailwind/css/app.css" rel="stylesheet">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ 
+</head>
+
+<body>
+  <div class="container mx-auto">
+    <!--NavBar-->
+        {% include 'nav.html' %}
+    <!---->
+    <div class="main-div">
+      <div class="mt-10">
+        <h3 class="p-3 text-2xl text-center">Text to image Generator</h3>
+        <div class="sm:text-center w-full">
+          <div class="w-full">
+
+            <input
+              class="p-5 pl-10 w-full 
+              text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Enter your API key"              
+              id="key" name="key" type="text">
+
+            <input
+              class="p-5 pl-10 w-full 
+              text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Enter your text description"
+              value="girl as a portrait painting, content facial expression, thick strokes, oil paint, minimalistic"
+              id="prompt" name="prompt" type="text">
+
+              <input
+              class="p-5 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Negative Prompt"
+              id="negative_prompt" name="negative_prompt" type="text">
+
+          </div>
+
+          <select name="sample" required id="sample"
+            class="w-full rounded-xl border-gray-300 focus:border-blue-100 p-3">
+            <option value="">Samples</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+
+
+          <select name="aspectRatio" required id="aspectRatio"
+            class="w-full rounded-xl border-gray-300 focus:border-blue-100 p-3">
+            <option value="select_asp">Select Aspect Ratio</option>
+            <option value="Cinema">Cinema(16:9)</option>
+            <option value="Landscape">Landscape(3:2)</option>
+            <option value="Square">Square(1:1)</option>
+            <option value="Tablet">Tablet(2:3)</option>
+            <option value="Phone">Phone(9:16)</option>
+          </select>
+          <select name="endpoint" required id="endpoint"
+            class="w-full rounded-xl border-gray-300 focus:border-blue-100 p-3">
+            <option value="">Select Type</option>
+            <option value="text2img">Text to Image</option>
+            <option value="image_to_image">img2img</option>
+            <option value="inpaint">inpaint</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="flex justify-center items-center">
+        <button type="button" id="submitButton"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function sleep(delay) {
+    var start = new Date().getTime();
+    while (new Date().getTime() < start + delay);
+}
+jQuery(document).ready(function ($) {
+    console.log("hello! you are inside Jquery");
+    jQuery("#submitButton").click(function () {
+        //jQuery(".main-div").html("<h3 style='color:#06625a' >Loading...</h3>");
+        console.log("you have clicked on submit button");
+        console.log(this);
+        prompval = jQuery('#prompt').val();
+        negetiveprompt = jQuery('#negative_prompt').val();
+        samples = jQuery('#sample').val();
+        aspectRatio = jQuery('#aspectRatio').val();
+        console.log(aspectRatio);
+        $.ajax({
+            type: 'POST',
+            url: "{{url_for('generator')}}",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ prompt: prompval, negative_prompt: negetiveprompt, samples: samples, enhance_prompt: "no", aspectRatio: aspectRatio }),
+
+            beforeSend: function (res, status) {
+                jQuery(".main-div").html(`<button class="buttonload">
+                     <i class="fa fa-refresh fa-spin"></i>Loading
+                   </button>`);
+            },
+
+            success: function (res) {
+            console.log(res)
+                            jQuery(".main-div").html(`<button class="buttonload">
+                     <i class="fa fa-refresh fa-spin"></i>Loading
+                   </button>`);
+                                let sleeptime = 5* 1000 + 59000;
+                    console.log("before sleeping")
+                    sleep(sleeptime);
+                    console.log("after sleeping")
+                                  alert("You will now be redirected.");
+                    window.location = "{{url_for('show_images')}}";
+            },
+            error: function (res) {
+                console.log(res);
+                console.log("error has been occured")
+            }
+
+        });
+    });
+})
+</script>
+</body>
+
+</html>
